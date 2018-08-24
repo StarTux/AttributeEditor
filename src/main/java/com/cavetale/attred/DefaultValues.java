@@ -2,6 +2,9 @@ package com.cavetale.attred;
 
 import org.bukkit.Material;
 
+/**
+ * All values are taken from https://minecraft.gamepedia.com/
+ */
 final class DefaultValues {
     private DefaultValues() { }
 
