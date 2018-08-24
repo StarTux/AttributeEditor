@@ -47,6 +47,22 @@ public final class ItemAttribute {
         }
     }
 
+    public ItemAttribute(Attribute attribute, EquipmentSlot slot, double amount, Operation operation) {
+        this(attribute, slot, attributeNameOf(attribute), amount, operation, UUID.randomUUID());
+    }
+
+    public ItemAttribute(Attribute attribute, EquipmentSlot slot, double amount) {
+        this(attribute, slot, attributeNameOf(attribute), amount, Operation.ADD_NUMBER, UUID.randomUUID());
+    }
+
+    public ItemAttribute(Attribute attribute, double amount, Operation operation) {
+        this(attribute, (EquipmentSlot)null, attributeNameOf(attribute), amount, operation, UUID.randomUUID());
+    }
+
+    public ItemAttribute(Attribute attribute, double amount) {
+        this(attribute, (EquipmentSlot)null, attributeNameOf(attribute), amount, Operation.ADD_NUMBER, UUID.randomUUID());
+    }
+
     /**
      * Get a list of attributes on an item.
      * @param bukkitItem The item
@@ -104,7 +120,11 @@ public final class ItemAttribute {
         NBTTagCompound attrInst = new NBTTagCompound();
         String attrSlot;
         int attrOperation;
-        attrInst.setString("Slot", getSlotName());
+        if (this.slot == null) {
+            attrInst.setString("Slot", slotNameOf(guessEquipmentSlotOf(obcItem)));
+        } else {
+            attrInst.setString("Slot", getSlotName());
+        }
         attrInst.setString("AttributeName", getAttributeName());
         attrInst.setString("Name", this.name);
         attrInst.setDouble("Amount", this.amount);
