@@ -1,0 +1,29 @@
+name: AttributeEditor
+description: Edit Item Attributes
+author: StarTux
+version: 0.1
+api-version: 1.13
+website: http://cavetale.com
+main: com.cavetale.attred.AttributeEditorPlugin
+depend: []
+softdepend: []
+commands:
+  attributeeditor:
+    aliases: [ attred ]
+    description: Edit item attributes
+    permission: attred.attred
+    usage: |-
+      /attred list - List attributes of item in hand
+      /attred add <attr> <value> [args] - Add item attribute
+        available args:
+        - op=OPERATION - default 0
+        - slot=SLOT - default auto based on item
+        - name=NAME - default attribute name
+        - uuid=UUID - default random
+        - uuidLeast=NUM - default random
+        - uuidMost=NUM - default random
+      /attred remove - Remove all item attributes
+permissions:
+  attred.attred:
+    description: use /attred
+    default: op
