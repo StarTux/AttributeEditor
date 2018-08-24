@@ -36,14 +36,14 @@ public final class AttributeEditorPlugin extends JavaPlugin {
                 }
                 List<ItemAttribute> list = ItemAttribute.of(item);
                 String pl = list.size() == 1 ? "" : "s";
-                player.sendMessage(ChatColor.YELLOW + "" + list.size() + " attribute" + pl + " set on " + item.getType().name().toLowerCase().replace("_", ""));
+                player.sendMessage(ChatColor.YELLOW + "" + list.size() + " attribute" + pl + " set on " + item.getType().name().toLowerCase().replace("_", " "));
                 for (ItemAttribute inst: list) {
                     player.sendMessage(ChatColor.GRAY + "+ " + ChatColor.WHITE + inst.getAttributeName() + ChatColor.GRAY + " " + inst.getOperationSymbol() + ChatColor.WHITE + String.format("%.02f", inst.getAmount()) + ChatColor.GRAY + " (" + inst.getSlotName() + ")");
                 }
                 if (list.isEmpty()) {
                     list = ItemAttribute.defaultsOf(item);
                     pl = list.size() == 1 ? "" : "s";
-                    player.sendMessage("" + ChatColor.YELLOW + ChatColor.ITALIC + list.size() + " default attribute" + pl + " on " + item.getType().name().toLowerCase().replace("_", ""));
+                    player.sendMessage("" + ChatColor.YELLOW + ChatColor.ITALIC + list.size() + " default attribute" + pl + " on " + item.getType().name().toLowerCase().replace("_", " "));
                     for (ItemAttribute inst: list) {
                         player.sendMessage(ChatColor.GRAY + "- " + ChatColor.WHITE + inst.getAttributeName() + ChatColor.GRAY + " " + inst.getOperationSymbol() + ChatColor.WHITE + String.format("%.02f", inst.getAmount()) + ChatColor.GRAY + " (" + inst.getSlotName() + ")");
                     }
@@ -158,7 +158,7 @@ public final class AttributeEditorPlugin extends JavaPlugin {
                 ItemAttribute itemAttribute = new ItemAttribute(attribute, slot, name, amount, operation, attrid);
                 item = itemAttribute.addTo(item);
                 if (item != item) player.getInventory().setItemInHand(item);
-                player.sendMessage(ChatColor.BLUE + "Attribute " + itemAttribute.getAttributeName() + itemAttribute.getOperationSymbol() + String.format("%.02f", itemAttribute.getAmount()) + " added to " + item.getType().name().toLowerCase().replace("_", ""));
+                player.sendMessage(ChatColor.BLUE + "Attribute " + itemAttribute.getAttributeName() + itemAttribute.getOperationSymbol() + String.format("%.02f", itemAttribute.getAmount()) + " added to " + item.getType().name().toLowerCase().replace("_", " "));
                 return true;
             }
         case "remove":
@@ -169,9 +169,9 @@ public final class AttributeEditorPlugin extends JavaPlugin {
                     return true;
                 }
                 if (ItemAttribute.reset(item)) {
-                    player.sendMessage(ChatColor.BLUE + "Item attributes of " + item.getType().name().toLowerCase().replace("_", "") + " were reset to default.");
+                    player.sendMessage(ChatColor.BLUE + "Item attributes of " + item.getType().name().toLowerCase().replace("_", " ") + " were reset to default.");
                 } else {
-                    player.sendMessage(ChatColor.RED + "No item attributes found on " + item.getType().name().toLowerCase().replace("_", "") + ".");
+                    player.sendMessage(ChatColor.RED + "No item attributes found on " + item.getType().name().toLowerCase().replace("_", " ") + ".");
                 }
                 return true;
             }
