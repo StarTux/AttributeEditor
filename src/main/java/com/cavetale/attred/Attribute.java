@@ -1,0 +1,10 @@
+package com.cavetale.attred;
+
+public enum Attribute {
+    GENERIC_ATTACK_DAMAGE,
+    GENERIC_FLYING_SPEED,
+    GENERIC_FOLLOW_RANGE,
+    GENERIC_KNOCKBACK_RESISTANCE,
+    GENERIC_MAX_HEALTH,
+    GENERIC_MOVEMENT_SPEED;
+}
