@@ -8,8 +8,6 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.attribute.Attribute;
-import org.bukkit.attribute.AttributeModifier.Operation;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -29,7 +27,7 @@ public final class AttributeEditorPlugin extends JavaPlugin {
         switch (args[0]) {
         case "list":
             if (args.length == 1) {
-                ItemStack item = player.getInventory().getItemInMainHand();
+                ItemStack item = player.getInventory().getItemInHand();
                 if (item == null || item.getType() == Material.AIR) {
                     sender.sendMessage(ChatColor.RED + "No item in hand");
                     return true;
@@ -53,7 +51,7 @@ public final class AttributeEditorPlugin extends JavaPlugin {
             break;
         case "add":
             if (args.length >= 3) {
-                ItemStack item = player.getInventory().getItemInMainHand();
+                ItemStack item = player.getInventory().getItemInHand();
                 if (item == null || item.getType() == Material.AIR) {
                     sender.sendMessage(ChatColor.RED + "No item in hand");
                     return true;
@@ -163,7 +161,7 @@ public final class AttributeEditorPlugin extends JavaPlugin {
             }
         case "remove":
             if (args.length == 1) {
-                ItemStack item = player.getInventory().getItemInMainHand();
+                ItemStack item = player.getInventory().getItemInHand();
                 if (item == null || item.getType() == Material.AIR) {
                     sender.sendMessage(ChatColor.RED + "No item in hand");
                     return true;

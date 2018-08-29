@@ -9,14 +9,12 @@ import java.util.Map;
 import java.util.UUID;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import net.minecraft.server.v1_13_R2.ItemStack;
-import net.minecraft.server.v1_13_R2.NBTBase;
-import net.minecraft.server.v1_13_R2.NBTTagCompound;
-import net.minecraft.server.v1_13_R2.NBTTagList;
+import net.minecraft.server.v1_8_R3.ItemStack;
+import net.minecraft.server.v1_8_R3.NBTBase;
+import net.minecraft.server.v1_8_R3.NBTTagCompound;
+import net.minecraft.server.v1_8_R3.NBTTagList;
 import org.bukkit.Material;
-import org.bukkit.attribute.Attribute;
-import org.bukkit.attribute.AttributeModifier.Operation;
-import org.bukkit.craftbukkit.v1_13_R2.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 import org.bukkit.inventory.EquipmentSlot;
 
 @RequiredArgsConstructor @Getter
@@ -73,7 +71,7 @@ public final class ItemAttribute {
         NBTTagList attrList = getAttributeTag(bukkitItem);
         if (attrList == null) return result;
         for (int i = 0; i < attrList.size(); i += 1) {
-            NBTTagCompound attrInst = attrList.getCompound(i);
+            NBTTagCompound attrInst = (NBTTagCompound)attrList.get(i);
             String attrSlot = attrInst.getString("Slot");
             String attrAttributeName = attrInst.getString("AttributeName");
             String attrName = attrInst.getString("Name");
@@ -97,14 +95,8 @@ public final class ItemAttribute {
     public static List<ItemAttribute> defaultsOf(org.bukkit.inventory.ItemStack item) {
         List<ItemAttribute> result = new ArrayList<>();
         Material mat = item.getType();
-        double armor = DefaultValues.getDefaultArmor(mat);
-        double tough = DefaultValues.getDefaultArmorToughness(mat);
         double damag = DefaultValues.getDefaultAttackDamage(mat);
-        double speed = DefaultValues.getDefaultAttackSpeed(mat);
-        if (armor > 0) result.add(new ItemAttribute(Attribute.GENERIC_ARMOR, guessEquipmentSlotOf(item), attributeNameOf(Attribute.GENERIC_ARMOR), armor, Operation.ADD_NUMBER, UUID.randomUUID()));
-        if (tough > 0) result.add(new ItemAttribute(Attribute.GENERIC_ARMOR_TOUGHNESS, guessEquipmentSlotOf(item), attributeNameOf(Attribute.GENERIC_ARMOR_TOUGHNESS), tough, Operation.ADD_NUMBER, UUID.randomUUID()));
         if (damag > 0) result.add(new ItemAttribute(Attribute.GENERIC_ATTACK_DAMAGE, guessEquipmentSlotOf(item), attributeNameOf(Attribute.GENERIC_ATTACK_DAMAGE), damag, Operation.ADD_NUMBER, UUID.randomUUID()));
-        if (speed > 0) result.add(new ItemAttribute(Attribute.GENERIC_ATTACK_SPEED, guessEquipmentSlotOf(item), attributeNameOf(Attribute.GENERIC_ATTACK_SPEED), speed, Operation.ADD_NUMBER, UUID.randomUUID()));
         return result;
     }
 
@@ -163,7 +155,6 @@ public final class ItemAttribute {
     public static String slotNameOf(EquipmentSlot slot) {
         switch (slot) {
         case HAND: return "mainhand";
-        case OFF_HAND: return "offhand";
         case HEAD: return "head";
         case CHEST: return "chest";
         case LEGS: return "legs";
@@ -175,7 +166,6 @@ public final class ItemAttribute {
     public static EquipmentSlot slotOf(String name) {
         switch (name) {
         case "mainhand": return EquipmentSlot.HAND;
-        case "offhand": return EquipmentSlot.OFF_HAND;
         case "head": return EquipmentSlot.HEAD;
         case "chest": return EquipmentSlot.CHEST;
         case "legs": return EquipmentSlot.LEGS;
