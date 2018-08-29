@@ -48,3 +48,6 @@ All the properties with an equals sign are optional. If absent, AttributeEditor 
 ## Permissions
 There is only one permission for the main command.
 - **attred.attred** - Use the `/attred` command. (Default op)
+
+## Older versions
+- 1.12.2-backport: [AttributeEditor.jar](https://github.com/StarTux/AttributeEditor/releases/download/1.12.2-0.1/AttributeEditor.jar)
