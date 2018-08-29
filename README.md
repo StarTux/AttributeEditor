@@ -27,6 +27,7 @@ Beyond the API, there are 3 quick and easy commands to view, add, and remove att
 
 ## Compatibility
 AttributeEditor currently works ONLY on Spigot version 1.13. It will require a manual update because it accesses NBT data of items using NMS and OBC imports. Don't use this on any earlier version, and use with caution on any later version.
+**For older Spigot versions, scroll down.**
 
 ![Command Interface](https://i.imgur.com/87SC6aE.jpg)
 
