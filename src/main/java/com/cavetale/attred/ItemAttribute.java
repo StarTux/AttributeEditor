@@ -9,14 +9,14 @@ import java.util.Map;
 import java.util.UUID;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import net.minecraft.server.v1_13_R2.ItemStack;
-import net.minecraft.server.v1_13_R2.NBTBase;
-import net.minecraft.server.v1_13_R2.NBTTagCompound;
-import net.minecraft.server.v1_13_R2.NBTTagList;
+import net.minecraft.server.v1_12_R1.ItemStack;
+import net.minecraft.server.v1_12_R1.NBTBase;
+import net.minecraft.server.v1_12_R1.NBTTagCompound;
+import net.minecraft.server.v1_12_R1.NBTTagList;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier.Operation;
-import org.bukkit.craftbukkit.v1_13_R2.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftItemStack;
 import org.bukkit.inventory.EquipmentSlot;
 
 @RequiredArgsConstructor @Getter
@@ -73,7 +73,9 @@ public final class ItemAttribute {
         NBTTagList attrList = getAttributeTag(bukkitItem);
         if (attrList == null) return result;
         for (int i = 0; i < attrList.size(); i += 1) {
-            NBTTagCompound attrInst = attrList.getCompound(i);
+            NBTBase base =  attrList.get(i);
+            if (!(base instanceof NBTTagCompound)) continue;
+            NBTTagCompound attrInst = (NBTTagCompound)base;
             String attrSlot = attrInst.getString("Slot");
             String attrAttributeName = attrInst.getString("AttributeName");
             String attrName = attrInst.getString("Name");
