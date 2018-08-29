@@ -5,7 +5,7 @@
   <artifactId>attributeeditor</artifactId>
   <packaging>jar</packaging>
   <version>0.1-SNAPSHOT</version>
-  <name>Attribute Editor</name>
+  <name>AttributeEditor</name>
   <url>https://www.cavetale.com</url>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -33,6 +33,7 @@
     </dependency>
   </dependencies>
   <build>
+    <finalName>${project.name}</finalName>
     <plugins>
       <!-- Java 8 -->
       <plugin>
